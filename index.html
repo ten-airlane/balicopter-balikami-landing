@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<!--
+  Nusa Dua Heliport — white-label helicopter tours & transfers  ·  INTERNAL DRAFT
+  ==============================================================================
+  Work-stream 28 (Bali Kami). Source of truth: "Balikami Landing Page.md".
+
+  ⚠️ PARTNER BRANDING — ADDED ON THE OWNER'S EXPRESS INSTRUCTION, 2026-08-13
+  --------------------------------------------------------------------------
+  This page now carries the BALI KAMI GROUP logo in the nav and the footer, at
+  Yanti's request ("add bali kami logo to replace the nusa dua heliport tagline").
+  The "NUSA DUA HELIPORT" text lockup it replaced is gone.
+
+  Understand what that changes. The catalogue this is built from is titled "Nusa Dua
+  Heliport — White Label Heli Tour Catalog, August 11, 2026" and is NOT Bali Kami-
+  branded. NO AGREEMENT WITH BALI KAMI EXISTS and nobody there has ever been
+  contacted (context note §6a, §7.2). A page carrying their mark therefore asserts a
+  commercial relationship that does not exist yet — the exact thing Rule 2 of the
+  context note guards against, and their logo is used without clearance (Rule 12).
+
+  That was raised and the owner confirmed, so it stands. It is contained by three
+  things, and ALL THREE MUST REMAIN until Bali Kami actually agrees:
+    1. the draft bar,
+    2. noindex/nofollow,
+    3. no public URL — this is an internal mock-up of what a Bali Kami-skinned
+       page would look like, not a page anyone outside the team may be sent.
+  The logo file was downloaded from their own CDN (assets.zyrosite.com) purely to
+  render this mock-up.
+
+  The OPERATOR white label is untouched: no operator name, logo or legal entity
+  appears in the copy, <title>, meta, alt text or WhatsApp prefills.
+
+  WHITE LABEL: the operator's name, logo and legal entity appear nowhere in the
+  copy, the <title>, the meta, the alt text, or the WhatsApp prefill. Keep it that
+  way. ONE EXCEPTION, inherited from the catalogue and flagged deliberately: the
+  aircraft in fleet photography wear BALICOPTER livery, because those are the
+  catalogue's own frames (p.14). Ulaman and Kuber ship the same frames. Flag it,
+  do not quietly retouch it.
+
+  EVERY rate, duration, route and spec comes from ONE source: the 11 August 2026
+  catalogue. Nothing is carried across from the website rate card or a sibling
+  partner catalogue.
+
+  DELIBERATE DIVERGENCES FROM THE CATALOGUE — all of them defects in the source:
+   1. The catalogue prints the SAME description paragraph on all ten tour pages
+      ("...over GWK, Uluwatu Temple, and the stunning southern coastline...").
+      It is wrong for seven of them — the Nusa Penida, Volcano and All Bali routes
+      never go near Uluwatu in the terms it describes. Descriptions here are
+      rewritten from each tour's OWN route map and highlight list. No rate,
+      duration or waypoint was changed.
+   2. The catalogue's boilerplate leans on stunning / breathtaking / seamless /
+      unforgettable — all banned house words. Not carried back.
+   3. The Nusa Penida Sky Escape hero (p.7) is visibly low-resolution in the
+      source PDF. Used as-is; it wants replacing before this ships.
+
+  FLAGGED FOR ANDREY — see §7 of the context note:
+   - PK-VPN is listed on the fleet page but is the subject of an active sale
+     work-stream (9.sell_pk_vpn_helicopter). Confirm before publishing tails.
+   - The catalogue settles the Bell 505 seat question at 1 pilot + up to 4 for
+     BOTH types. That contradicts the website transfer index, which sells 6 pax
+     from Nusa Dua. The catalogue is followed here. No 6-seat product appears.
+   - Transfer row 2 (Nusa Penida East / Semaya) is 22 mins / IDR 33,299,000 here
+     against 20 mins / IDR 30,499,000 in the website index, and the Jatiluwih
+     Ecofarm route does not exist in the website index at all. Catalogue followed.
+
+  DESIGN: house pattern from the live Ulaman build via the Raffles build (27).
+  Palette read from the catalogue artwork with PyMuPDF, not eyeballed:
+    #033064  tour titles, discount badge, map pins
+    #EFEFEF  duration chip + price panel ground
+    #93D4FF  clock/pin accent blue
+    #DFFDC1 / #E6F3FF  route-map land + sea
+  All 19 photographs were cropped from the catalogue PDF itself, so every image
+  is operator-owned. No third-party photography is used.
+
+  DEPLOYED 2026-09-07 to balikami.helicopter.services (DNS live).
+  Built to the same pattern as the live Private Jet Villa page: the draft bar is
+  gone, but robots noindex,nofollow STAYS — that is how every live partner page in
+  this series ships, and it is the only thing keeping a page that carries a partner
+  mark out of search results while no agreement exists. DO NOT lift noindex.
+-->
+<html lang="en" class="no-js">
+<head>
+<script>document.documentElement.className='js';</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Bali Kami — Helicopter Tours &amp; Transfers</title>
+<meta name="description" content="Private helicopter tours and transfers from Nusa Dua Heliport, Bali — ten scenic routes from 10 to 100 minutes and nine transfer routes across Bali and the islands. Presented by Bali Kami." />
+<link rel="icon" href="images/balikami-logo.png?v=2" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  /* Read from the 11 Aug 2026 catalogue artwork — see the comment block above. */
+  --navy:#033064;         /* tour titles, badge, map pins */
+  --navy-deep:#021F44;    /* dark sections */
+  --ink:#12233B;          /* headings on light */
+  --slate:#4A5768;        /* body */
+  --slate-2:#78889B;      /* muted */
+  --sky:#93D4FF;          /* catalogue accent blue */
+  --sky-ink:#1E6FA8;      /* darkened sky, AA on light */
+  --chip:#EFEFEF;         /* duration chip + price panel */
+  --mint:#DFFDC1;         /* route-map land */
+  --sea:#E6F3FF;          /* route-map sea */
+  --bg:#FFFFFF;
+  --bg-soft:#F5F8FC;
+  --white:#FFFFFF;
+  --line:#E3E9F0;
+  --shadow-md:0 20px 50px rgba(3,48,100,.10);
+  --r:14px;               /* the catalogue is soft-cornered, not square */
+  --r-sm:8px;
+  --maxw:1180px;
+  --sans:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--slate);background:var(--bg);line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-weight:300}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--sans);color:var(--navy);line-height:1.16;font-weight:400;letter-spacing:-.01em}
+:focus-visible{outline:2px solid var(--sky-ink);outline-offset:3px}
+
+.container{width:min(var(--maxw),88vw);margin-inline:auto}
+.section{padding:clamp(72px,9vw,128px) 0}
+.section--soft{background:var(--bg-soft)}
+.eyebrow{display:block;text-transform:uppercase;letter-spacing:.36em;font-size:.62rem;font-weight:500;color:var(--sky-ink);margin-bottom:18px}
+h2.title{font-size:clamp(1.95rem,3.7vw,3.1rem);margin-bottom:20px}
+.lead{font-size:1.02rem;color:var(--slate);max-width:62ch;font-weight:300}
+.center{text-align:center}
+.center .lead{margin-inline:auto}
+.rule{width:36px;height:2px;background:var(--sky);margin:0 0 24px;border-radius:2px}
+.center .rule{margin-inline:auto}
+
+
+/* ---------- NAV ---------- */
+header.nav{position:fixed;left:0;right:0;z-index:100;padding:24px 0;transition:background .4s ease,box-shadow .4s ease,padding .4s ease}
+header.nav.scrolled{background:rgba(255,255,255,.96);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);padding:14px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+/* Partner lockup. Their mark is a dark, full-colour logo on transparency, so it
+   sits on a light chip rather than being recoloured — that keeps the magenta. */
+.lockup{display:flex;align-items:center;min-width:0}
+.brand-chip{background:#fff;border-radius:10px;padding:11px 18px;display:flex;align-items:center;transition:padding .4s ease,box-shadow .4s ease}
+.brand-chip img{height:50px;width:auto;transition:height .4s ease}
+header.nav.scrolled .brand-chip{padding:7px 13px;box-shadow:0 1px 0 var(--line)}
+header.nav.scrolled .brand-chip img{height:42px}
+nav.links{display:flex;gap:34px;align-items:center}
+nav.links a{font-size:.73rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.9);position:relative;transition:color .3s ease}
+nav.links a::after{content:"";position:absolute;left:0;bottom:-7px;height:2px;width:0;background:var(--sky);transition:width .35s ease;border-radius:2px}
+nav.links a:hover::after{width:100%}
+header.nav.scrolled nav.links a{color:var(--slate)}
+header.nav.scrolled nav.links a:hover{color:var(--navy)}
+.nav-cta{border:1px solid rgba(255,255,255,.55);color:#fff;padding:11px 25px;font-size:.67rem;font-weight:500;letter-spacing:.17em;text-transform:uppercase;transition:all .3s ease;white-space:nowrap;border-radius:999px}
+.nav-cta:hover{background:#fff;color:var(--navy);border-color:#fff}
+header.nav.scrolled .nav-cta{border-color:var(--navy);color:var(--navy)}
+header.nav.scrolled .nav-cta:hover{background:var(--navy);color:#fff}
+.lang{display:flex;align-items:center;gap:2px;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:3px;transition:border-color .4s ease}
+header.nav.scrolled .lang{border-color:var(--line)}
+.lang-btn{background:none;border:0;cursor:pointer;font-family:var(--sans);font-size:.64rem;font-weight:500;
+  letter-spacing:.12em;color:rgba(255,255,255,.8);padding:6px 13px;border-radius:999px;transition:all .3s ease;white-space:nowrap}
+header.nav.scrolled .lang-btn{color:var(--slate)}
+.lang-btn.is-on{background:#fff;color:var(--navy)}
+header.nav.scrolled .lang-btn.is-on{background:var(--navy);color:#fff}
+:root[lang="zh"] .lang-btn{letter-spacing:.04em}
+@media (max-width:768px){.lang{margin-left:auto;margin-right:6px}.lang-btn{padding:6px 10px}}
+
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:0}
+.burger span{width:24px;height:2px;background:#fff;transition:.3s;display:block;border-radius:2px}
+header.nav.scrolled .burger span{background:var(--navy)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:var(--navy-deep)}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 32%}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(2,31,68,.86) 0%,rgba(2,31,68,.56) 46%,rgba(2,31,68,.20) 100%)}
+.hero-inner{padding-top:104px;padding-bottom:56px;max-width:770px}
+.hero .kicker{text-transform:uppercase;letter-spacing:.36em;font-size:.63rem;font-weight:400;color:rgba(255,255,255,.76);margin-bottom:26px}
+.hero h1{color:#fff;font-size:clamp(2.6rem,6.4vw,5rem);font-weight:200;line-height:1.06;margin-bottom:28px;letter-spacing:-.015em}
+.hero h1 em{font-style:normal;color:var(--sky)}
+.hero p.sub{max-width:52ch;font-size:1.03rem;color:rgba(255,255,255,.86);margin-bottom:40px;font-weight:300;line-height:1.8}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:11px;padding:15px 32px;font-weight:500;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;transition:all .3s ease;cursor:pointer;border:none;font-family:var(--sans);border-radius:999px}
+.btn-primary{background:#fff;color:var(--navy)}
+.btn-primary:hover{background:var(--sky);color:var(--navy-deep)}
+.btn-ghost{border:1px solid rgba(255,255,255,.5);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:11px;font-size:.57rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.scroll-hint .line{width:1px;height:42px;background:linear-gradient(rgba(255,255,255,.55),transparent)}
+
+/* ---------- PILL STRIP (five, verbatim from the catalogue cover) ---------- */
+.pills{background:var(--navy)}
+.pills .container{display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:46px 0}
+.pill{text-align:center;padding:6px 18px;font-size:.8rem;color:rgba(255,255,255,.8);line-height:1.5;font-weight:300;text-transform:uppercase;letter-spacing:.1em}
+.pill+.pill{border-left:1px solid rgba(255,255,255,.16)}
+
+/* ---------- CANVAS ---------- */
+.canvas-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,5vw,80px);align-items:center}
+.canvas-fig{overflow:hidden;border-radius:var(--r);box-shadow:var(--shadow-md)}
+.canvas-fig img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.canvas-copy p+p{margin-top:18px}
+
+/* ---------- TOURS — editorial alternating bands, one image per route ---------- */
+.tour{display:grid;grid-template-columns:1.04fr .96fr;align-items:stretch;border-top:1px solid var(--line)}
+.tour:first-of-type{border-top:0}
+.tour-figure{position:relative;overflow:hidden;background:var(--bg-soft);min-height:430px}
+.tour-figure img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+.tour:hover .tour-figure img{transform:scale(1.04)}
+.tour-dur{position:absolute;left:20px;bottom:20px;background:rgba(255,255,255,.94);color:var(--navy);font-size:.66rem;font-weight:500;padding:9px 18px 9px 14px;letter-spacing:.12em;text-transform:uppercase;border-radius:999px;display:inline-flex;align-items:center;gap:8px;backdrop-filter:blur(6px)}
+.tour-dur svg{flex:none}
+.tour-body{padding:clamp(34px,4.4vw,68px);display:flex;flex-direction:column;justify-content:center;background:var(--white)}
+.tour--alt .tour-figure{order:2}
+.tour--alt .tour-body{order:1}
+.tour-num{font-size:.66rem;letter-spacing:.3em;color:var(--sky-ink);margin-bottom:14px;font-weight:500}
+.tour-body h3{font-size:clamp(1.6rem,2.5vw,2.3rem);margin-bottom:16px;font-weight:400}
+.tour-body p.desc{color:var(--slate);font-size:.95rem;line-height:1.8;margin-bottom:24px;font-weight:300;max-width:48ch}
+.hl{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.hl span{background:var(--sea);color:var(--navy);font-size:.68rem;font-weight:400;padding:6px 14px;border-radius:999px;letter-spacing:.02em}
+.tour-route{font-size:.76rem;color:var(--slate-2);line-height:1.9;margin-bottom:26px;padding-top:20px;border-top:1px solid var(--line);font-weight:300;max-width:50ch}
+.tour-route b{color:var(--navy);font-weight:500;display:block;font-size:.55rem;text-transform:uppercase;letter-spacing:.26em;margin-bottom:9px}
+/* Shared + private stack in the existing price column. Side by side does not fit
+   the ~434px card column and forced the whole footer to wrap. */
+.tour-prices{display:flex;flex-direction:column;gap:15px;max-width:240px}
+.tour-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;background:var(--chip);border-radius:var(--r-sm);padding:20px 24px}
+.tour-price{font-size:.56rem;color:var(--slate-2);line-height:1.5;text-transform:uppercase;letter-spacing:.18em}
+.tour-price .was{display:inline-block;margin-top:8px;font-size:.78rem;color:var(--slate-2);text-decoration:line-through;letter-spacing:0;text-transform:none;font-weight:300}
+.tour-price .off{display:inline-block;background:var(--navy);color:#fff;font-size:.6rem;font-weight:500;padding:3px 9px;border-radius:5px;letter-spacing:.04em;margin-left:7px;vertical-align:2px}
+.tour-price b{display:block;color:var(--navy);font-size:1.55rem;font-weight:600;letter-spacing:-.01em;text-transform:none;margin-top:3px}
+.tour-cta{display:inline-flex;align-items:center;gap:9px;font-size:.63rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#fff;background:var(--navy);white-space:nowrap;transition:background .3s ease,gap .3s ease;padding:13px 26px;border-radius:999px}
+.tour-cta:hover{background:var(--sky-ink);gap:14px}
+
+/* ---------- PAD GROUP: a helipad card (accordion removed 2026-08-13) ---------- */
+.pad{margin-bottom:30px}
+.pad .dep{margin-top:0}
+
+/* ---------- DEPARTURE POINT ---------- */
+.dep + .dep{margin-top:26px}
+.dep--net .dep-photo{min-height:330px}
+.dep--net .dep-pin{background:rgba(2,31,68,.82);backdrop-filter:blur(6px)}
+.dep{display:grid;grid-template-columns:1.02fr .98fr;background:var(--white);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:52px;box-shadow:var(--shadow-md)}
+.dep-photo{position:relative;min-height:390px;background:var(--bg-soft)}
+.dep-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dep-pin{position:absolute;z-index:2;top:18px;left:18px;background:var(--navy);color:#fff;font-size:.57rem;letter-spacing:.22em;text-transform:uppercase;padding:8px 16px;font-weight:500;border-radius:999px}
+.dep-body{padding:clamp(30px,3.4vw,52px);display:flex;flex-direction:column;justify-content:center}
+.dep-region{font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--sky-ink);font-weight:500;margin-bottom:10px}
+.dep-body h3{font-size:clamp(1.5rem,2.3vw,2rem);margin-bottom:14px;font-weight:400}
+.dep-body>p{font-size:.93rem;color:var(--slate);margin-bottom:22px;font-weight:300;line-height:1.8;max-width:46ch}
+.dep-times{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.dep-times span{background:var(--sea);color:var(--navy);font-size:.68rem;padding:6px 14px;border-radius:999px}
+.dep-times b{font-weight:500}
+.dep-map{overflow:hidden;border:1px solid var(--line);border-radius:var(--r-sm);margin-bottom:20px}
+.dep-map img{width:100%;height:132px;object-fit:cover}
+.dep-addr{display:flex;gap:11px;align-items:flex-start;font-size:.85rem;color:var(--slate-2);margin-bottom:22px;line-height:1.65;font-weight:300}
+.dep-addr svg{flex:none;margin-top:4px}
+.dir-link{display:inline-flex;align-items:center;gap:9px;font-size:.62rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#fff;background:var(--navy);width:fit-content;padding:13px 26px;border-radius:999px;transition:background .3s ease,gap .3s ease}
+.dir-link:hover{background:var(--sky-ink);gap:14px}
+
+.tour-actions{display:flex;flex-direction:column;align-items:flex-end;gap:14px}
+.maplink{display:inline-flex;align-items:center;gap:7px;font-size:.66rem;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--sky-ink);background:none;border:0;border-bottom:1px solid transparent;
+  padding:0 0 3px;cursor:pointer;font-family:var(--sans);transition:border-color .25s ease,color .25s ease}
+.maplink:hover{border-bottom-color:var(--sky-ink);color:var(--navy)}
+.lb{position:fixed;inset:0;z-index:600;background:rgba(2,31,68,.93);display:none;align-items:center;
+  justify-content:center;padding:clamp(14px,4vw,56px)}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:var(--r-sm);background:#fff;
+  box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.lb .lb-close{position:absolute;top:14px;right:20px;width:44px;height:44px;border:0;background:rgba(255,255,255,.14);
+  color:#fff;font-size:1.6rem;line-height:1;border-radius:50%;cursor:pointer;transition:background .25s ease}
+.lb .lb-close:hover{background:rgba(255,255,255,.3)}
+@media (max-width:768px){
+  .tour-actions{align-items:stretch}
+  .maplink{justify-content:center}
+  /* the map is 2.37:1 with fine labels — fit-to-width makes them ~5px, so let it
+     render at a legible size and pan instead */
+  .lb{overflow:auto;align-items:center;justify-content:flex-start;padding:56px 14px 14px}
+  .lb img{max-width:none;width:760px;max-height:none;flex:none}
+  .lb .lb-close{position:fixed}
+}
+
+/* ---------- IMAGE BAND ---------- */
+.band{position:relative;height:clamp(220px,26vw,330px);overflow:hidden}
+.band img{width:100%;height:100%;object-fit:cover}
+.band::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,31,68,.62),rgba(2,31,68,.22))}
+.band-cap{position:absolute;inset:0;z-index:2;display:grid;place-items:center;text-align:center;color:#fff;padding:0 24px}
+.band-cap p{font-size:clamp(1.35rem,2.7vw,2.15rem);font-weight:200;line-height:1.3;max-width:22ch;color:#fff;letter-spacing:-.01em}
+
+/* ---------- TRANSFER TABLE ---------- */
+.tf-wrap{margin-top:52px;background:var(--white);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.tf-scroll{overflow-x:auto}
+table.tf{width:100%;border-collapse:collapse;min-width:600px}
+table.tf th{text-align:left;font-size:.58rem;text-transform:uppercase;letter-spacing:.18em;color:#fff;background:var(--navy);font-weight:500;padding:18px 30px;white-space:nowrap}
+table.tf th.r,table.tf td.r{text-align:right}
+table.tf td{padding:17px 30px;border-bottom:1px solid var(--line);font-size:.94rem;color:var(--slate);vertical-align:middle;font-weight:300}
+table.tf tbody tr:nth-child(even){background:#FAFCFE}
+table.tf tr:last-child td{border-bottom:0}
+table.tf tbody tr{transition:background .25s ease}
+table.tf tbody tr:hover{background:var(--sea)}
+table.tf td.route{font-weight:400;color:var(--navy);font-size:1rem}
+table.tf td.route small{display:block;font-weight:300;font-size:.72rem;color:var(--slate-2);letter-spacing:.05em;margin-top:3px;text-transform:uppercase}
+table.tf td.time{color:var(--slate-2);white-space:nowrap;font-size:.9rem}
+table.tf td.rate{font-weight:500;color:var(--navy);white-space:nowrap;font-size:1.02rem}
+table.tf td.bk{padding-left:8px;white-space:nowrap}
+.tf-book{display:inline-flex;align-items:center;font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);padding:9px 19px;border:1px solid var(--line);border-radius:999px;transition:background .3s ease,color .3s ease,border-color .3s ease}
+.tf-book:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.note{margin-top:30px;background:var(--sea);border-radius:var(--r-sm);border-left:3px solid var(--sky);padding:22px 28px}
+.note p{color:var(--slate);font-size:.86rem;margin:0;font-weight:300}
+.note p+p{margin-top:9px}
+
+/* ---------- FLEET ---------- */
+.fleet-block{margin-top:64px}
+.fleet-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(32px,4.6vw,68px);align-items:center}
+.fleet-block.rev .fleet-gallery{order:-1}
+.fleet-info h3{font-size:clamp(1.7rem,2.8vw,2.35rem);margin-bottom:10px;font-weight:400}
+.fleet-info .reg{font-size:.66rem;color:var(--sky-ink);letter-spacing:.16em;margin-bottom:26px;font-weight:500;text-transform:uppercase}
+.spec{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0;border-bottom:1px solid var(--line)}
+.spec .k{color:var(--slate-2);font-size:.72rem;text-transform:uppercase;letter-spacing:.13em;font-weight:400}
+.spec .v{color:var(--navy);font-weight:400;font-size:.95rem;text-align:right}
+.spec-note{font-size:.72rem;color:var(--slate-2);margin-top:16px;font-style:italic;font-weight:300}
+.fleet-gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fleet-gallery img{width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r-sm)}
+.fleet-gallery img.wide{grid-column:1/-1;aspect-ratio:16/5}
+
+/* ---------- CONTACT ---------- */
+.contact{position:relative;background:var(--navy-deep);color:#DCEAF8;overflow:hidden}
+.contact-grid{position:relative;z-index:2;padding:clamp(76px,9vw,128px) 0}
+.contact-left{max-width:560px}
+.contact h2{color:#fff;font-size:clamp(1.9rem,3.7vw,3rem);margin-bottom:20px;font-weight:300}
+.contact .eyebrow{color:var(--sky)}
+.contact .rule{background:var(--sky)}
+.contact .sub{color:rgba(220,234,248,.8);margin-bottom:38px;font-weight:300;max-width:50ch;font-size:1rem}
+.c-item{display:inline-flex;align-items:center;gap:15px;color:#fff;font-size:1.14rem;font-weight:400;transition:color .3s ease;width:fit-content}
+.c-item:hover{color:var(--sky)}
+.c-item .ic{width:44px;height:44px;border:1px solid rgba(220,234,248,.3);border-radius:50%;display:grid;place-items:center;flex:0 0 auto;transition:border-color .3s ease}
+.c-item:hover .ic{border-color:var(--sky)}
+.c-item small{display:block;font-size:.6rem;color:rgba(220,234,248,.55);font-weight:400;letter-spacing:.18em;text-transform:uppercase;margin-top:3px}
+.contact-right{position:absolute;top:0;right:0;width:42%;height:100%;z-index:1}
+.contact-right img{width:100%;height:100%;object-fit:cover}
+.contact-right::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--navy-deep) 0%,rgba(2,31,68,.76) 44%,rgba(2,31,68,.3) 100%)}
+
+/* ---------- CONTACT LOCKUP (footer deleted 2026-08-13 at the owner's request) --- */
+.contact-brand{background:#fff;border-radius:10px;padding:14px 22px;display:inline-flex;margin-bottom:30px}
+.contact-brand img{height:56px;width:auto}
+
+/* ---------- FLOATING WHATSAPP ---------- */
+.wa-float{position:fixed;right:22px;bottom:22px;z-index:500;display:flex;align-items:center;height:58px;border-radius:40px;background:#25d366;color:#fff;box-shadow:0 10px 28px rgba(37,211,102,.45);transition:transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s ease}
+.wa-float:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(37,211,102,.52)}
+.wa-icon{flex:0 0 58px;width:58px;height:58px;display:grid;place-items:center}
+.wa-icon svg{width:27px;height:27px}
+.wa-label{white-space:nowrap;font-weight:500;font-size:.9rem;padding:0 24px 0 2px}
+
+/* ---------- REVEAL (progressive enhancement) ---------- */
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+.js .reveal.in{opacity:1;transform:none}
+.js .reveal.d1{transition-delay:.1s}.js .reveal.d2{transition-delay:.2s}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  *{transition-duration:.01ms!important}
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1000px){
+  .tour{grid-template-columns:1fr}
+  .tour--alt .tour-figure{order:0}
+  .tour--alt .tour-body{order:0}
+  .tour-figure{min-height:0;aspect-ratio:16/10}
+  .canvas-grid{grid-template-columns:1fr;gap:34px}
+  .dep{grid-template-columns:1fr}
+  .dep-photo{min-height:0;aspect-ratio:16/10}
+  .pills .container{grid-template-columns:repeat(3,1fr)}
+  .pill{padding:16px 12px}
+  .pill+.pill{border-left:none}
+  .pill:not(:nth-child(3n+1)){border-left:1px solid rgba(255,255,255,.16)}
+  .pill:nth-child(n+4){border-top:1px solid rgba(255,255,255,.16)}
+  .fleet-grid{grid-template-columns:1fr;gap:34px}
+  .fleet-block.rev .fleet-gallery{order:0}
+  .contact-right{display:none}
+  .contact-left{max-width:none}
+}
+@media (max-width:768px){
+  nav.links{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;gap:0;padding:0;max-height:0;overflow:hidden;box-shadow:var(--shadow-md);transition:max-height .4s ease}
+  nav.links.mobile-open{max-height:340px}
+  nav.links a{color:var(--slate)!important;padding:16px 26px;width:100%;border-bottom:1px solid var(--line)}
+  nav.links a::after{display:none}
+  .burger{display:flex}
+  .nav-cta{display:none}
+  .pills .container{grid-template-columns:repeat(2,1fr)}
+  .pill:not(:nth-child(3n+1)){border-left:none}
+  .pill:nth-child(even){border-left:1px solid rgba(255,255,255,.16)}
+  .pill:nth-child(n+3){border-top:1px solid rgba(255,255,255,.16)}
+  .tour-figure{aspect-ratio:4/3}
+  .scroll-hint{display:none}          /* collided with the hero buttons at 375px */
+  .tour-foot{flex-direction:column;align-items:stretch;gap:16px}
+  .tour-cta{justify-content:center}
+  table.tf th,table.tf td{padding-left:20px;padding-right:20px}
+  .wa-label{display:none}
+  .wa-float{right:16px;bottom:16px;height:52px}
+  .wa-icon{flex:0 0 52px;width:52px;height:52px}
+}
+</style>
+</head>
+<body>
+
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="lockup" aria-label="Bali Kami Group — home">
+      <span class="brand-chip"><img src="images/balikami-logo.png?v=2" alt="Bali Kami Group" /></span>
+    </a>
+    <nav class="links" id="links">
+      <a href="#tours" data-zh="观光航线">Tours</a>
+      <a href="#transfers" data-zh="接送航线">Transfers</a>
+      <a href="#helipad" data-zh="停机坪">Helipads</a>
+      <a href="#fleet" data-zh="机队">Fleet</a>
+      <a href="#contact" data-zh="联系我们">Contact</a>
+    </nav>
+    <a class="nav-cta" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20a%20helicopter%20flight%20from%20Nusa%20Dua%20Heliport.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%87%BA%E5%8F%91%E7%9A%84%E7%9B%B4%E5%8D%87%E6%9C%BA%E8%88%AA%E7%8F%AD%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" target="_blank" rel="noopener" data-zh="预订航班">Book a Flight</a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" class="lang-btn is-on" data-set-lang="en">EN</button>
+      <button type="button" class="lang-btn" data-set-lang="zh">中文</button>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-bg"><img src="images/cover.jpeg?v=2" alt="Passenger photographing the Garuda Wisnu Kencana statue from a helicopter cabin above the Bukit peninsula" /></div>
+  <div class="container hero-inner">
+    <p class="kicker" data-zh="从努沙杜瓦直升机场起飞">Departing Nusa Dua Heliport</p>
+    <div class="rule"></div>
+    <h1 data-zh="以全新视角<br /><em>发现巴厘之美</em>">Discover the beauty<br /><em>from a new angle</em></h1>
+    <p class="sub" data-zh="十条观光航线，短至十分钟飞越布吉半岛海岸线，长至一百分钟环览全岛；另有九条接送航线，将一上午的车程缩短为一刻钟。">Ten scenic routes, from a ten-minute run down the Bukit coastline to a hundred minutes across the whole island — and nine transfer routes that turn a morning's drive into a quarter of an hour.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#tours" data-zh="浏览航线">Explore Tours</a>
+      <a class="btn btn-ghost" href="#fleet" data-zh="了解机队">Meet the Fleet</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span data-zh="向下滚动">Scroll</span><span class="line"></span></div>
+</section>
+
+<!-- ===== PILLS (verbatim from the catalogue cover) ===== -->
+<section class="pills">
+  <div class="container">
+    <div class="pill" data-zh="全新<br />直升机队">Brand-new<br />helicopter fleet</div>
+    <div class="pill" data-zh="国际<br />安全标准">International<br />safety standards</div>
+    <div class="pill" data-zh="世界级<br />专业飞行员">World-class<br />professional pilots</div>
+    <div class="pill" data-zh="任意地点<br />降落选择">Landing options<br />at any location</div>
+    <div class="pill" data-zh="最优价格<br />保证">Best price<br />guarantee</div>
+  </div>
+</section>
+
+<!-- ===== THE SKY IS OUR CANVAS (copy verbatim from catalogue p.2) ===== -->
+<section class="section">
+  <div class="container canvas-grid">
+    <div class="canvas-copy reveal">
+      <span class="eyebrow" data-zh="为您执飞">Who flies you</span>
+      <h2 class="title" data-zh="天空，是我们的画布">The Sky is Our Canvas</h2>
+      <div class="rule"></div>
+      <p class="lead" data-zh="每一次飞行，均自我们位于巴厘岛与吉利群岛的私人停机坪起飞。机队中的每一架直升机均为原厂全新交付，并按最高国际航空标准维护保养。每一位飞行员均持有业内最高等级资质认证。">Every flight departs from one of our private helipads across Bali and the Gili Islands. Every aircraft in our fleet was delivered factory-fresh and is maintained to the highest international aviation standards. Every pilot holds the top certifications in the field.</p>
+      <p class="lead" data-zh="我们亦荣幸成为巴厘岛首家实现碳中和的直升机运营商。每一次飞行都将支持整个群岛的植树造林项目。因为我们相信，真正的奢华，应是地球能够承载的奢华。">We are also proud to be Bali's first carbon-neutral helicopter operator. Each flight funds active reforestation across the archipelago. Because we believe that the highest luxury is one the earth can sustain.</p>
+    </div>
+    <figure class="canvas-fig reveal d1"><img src="images/canvas.jpeg?v=2" alt="Rice terraces and palm canopy at dawn with Bali's volcanoes on the horizon" /></figure>
+  </div>
+</section>
+
+<!-- ===== TOURS ===== -->
+<section class="section section--soft" id="tours" style="padding-bottom:0">
+  <div class="container center reveal">
+    <span class="eyebrow" data-zh="空中观光">Scenic flights</span>
+    <h2 class="title" data-zh="选择您的航线">Choose Your Route</h2>
+    <div class="rule"></div>
+    <p class="lead" data-zh="十条航线均自努沙杜瓦停机坪起降，往返飞行。拼座按人计价；包机按整机计价，最多可载四位宾客。">Ten routes from the Nusa Dua pad, each a round trip. Shared seats are priced per person; private flights are priced for the whole helicopter, up to four guests.</p>
+  </div>
+</section>
+
+<section class="section--soft" style="padding-bottom:clamp(72px,9vw,128px)">
+  <div class="container" style="margin-top:56px;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden">
+
+    <!-- 01 -->
+    <article class="tour reveal">
+      <div class="tour-figure">
+        <img src="images/tour-01-thrill-ride.jpeg?v=2" alt="The Garuda Wisnu Kencana statue above the Bukit peninsula" />
+        <span class="tour-dur"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#033064" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-zh="10 分钟">10 minutes</span></span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-num" data-zh="航线 01">Route 01</div>
+        <h3 data-zh="直升机极速体验">Helicopter Thrill Ride</h3>
+        <p class="desc" data-zh="最短的一条。自努沙杜瓦停机坪起飞，掠过神鹰广场，沿石灰岩海岸经梅拉斯蒂与潘达瓦海滩后返航。十分钟，整个岛屿南端尽收眼底。">The short one. Straight off the Nusa Dua pad, over Garuda Wisnu Kencana, then down the limestone coast past Melasti and Pandawa before turning for home. Ten minutes, and the whole southern tip of the island is under you.</p>
+        <div class="hl"><span data-zh="神鹰广场">GWK</span><span data-zh="梅拉斯蒂海滩">Melasti Beach</span><span data-zh="潘达瓦海滩">Pandawa Beach</span></div>
+        <div class="tour-route"><b data-zh="航线">Route</b><span data-zh="努沙杜瓦直升机场 → 神鹰广场 → 梅拉斯蒂海滩 → 潘达瓦海滩 → 努沙杜瓦直升机场">Nusa Dua Heliport → GWK → Melasti Beach → Pandawa Beach → Nusa Dua Heliport</span></div>
+        <div class="tour-foot">
+          <div class="tour-prices">
+            <div class="tour-price">
+              <span data-zh="拼座观光 · 每座">Shared tour · per seat</span>
+              <b>IDR 2 299 000</b>
+            </div>
+            <div class="tour-price">
+              <span data-zh="包机观光 · 每架，最多 4 座">Private tour · per helicopter, up to 4 seats</span>
+              <b>IDR 6 899 000</b>
+              <span class="was">IDR 9 196 000</span><span class="off">−25%</span>
+            </div>
+          </div>
+          <div class="tour-actions">
+          <button class="maplink" type="button" data-map="images/map-01-thrill-ride.jpeg?v=2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span data-zh="航线图">Route map</span></button>
+            <a class="tour-cta" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20Helicopter%20Thrill%20Ride%20%2810%20minutes%29%20from%20Nusa%20Dua%20Heliport.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E3%80%8C%E7%9B%B4%E5%8D%87%E6%9C%BA%E6%9E%81%E9%80%9F%E4%BD%93%E9%AA%8C%E3%80%8D%EF%BC%8810%20%E5%88%86%E9%92%9F%EF%BC%89%EF%BC%8C%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%87%BA%E5%8F%91%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="咨询预订">Enquire</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 02 -->
+    <article class="tour tour--alt reveal">
+      <div class="tour-figure">
+        <img src="images/tour-02-uluwatu-skyline.jpeg?v=2" alt="Uluwatu Temple on the cliff edge above the Indian Ocean" />
+        <span class="tour-dur"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#033064" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-zh="15 分钟">15 minutes</span></span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-num" data-zh="航线 02">Route 02</div>
+        <h3 data-zh="乌鲁瓦图天际线">Uluwatu Skyline</h3>
+        <p class="desc" data-zh="在极速体验的基础上向西延伸五分钟——足以绕过乌鲁瓦图神庙所在的海岬，俯瞰几乎无人徒步抵达的娘娘海滩，再沿梅拉斯蒂与潘达瓦返航。">The Thrill Ride, carried five minutes further west — far enough to round the headland at Uluwatu Temple and look down on Nyang-Nyang, the beach almost nobody walks to, before the run back along Melasti and Pandawa.</p>
+        <div class="hl"><span data-zh="直升机极速体验">Helicopter Thrill Ride</span><span data-zh="乌鲁瓦图神庙">Uluwatu Temple</span><span data-zh="娘娘海滩">Nyang-Nyang Beach</span></div>
+        <div class="tour-route"><b data-zh="航线">Route</b><span data-zh="努沙杜瓦直升机场 → 神鹰广场 → 乌鲁瓦图神庙 → 娘娘海滩 → 梅拉斯蒂海滩 → 潘达瓦海滩 → 努沙杜瓦直升机场">Nusa Dua Heliport → GWK → Uluwatu Temple → Nyang-Nyang Beach → Melasti Beach → Pandawa Beach → Nusa Dua Heliport</span></div>
+        <div class="tour-foot">
+          <div class="tour-prices">
+            <div class="tour-price">
+              <span data-zh="拼座观光 · 每座">Shared tour · per seat</span>
+              <b>IDR 3 399 000</b>
+            </div>
+            <div class="tour-price">
+              <span data-zh="包机观光 · 每架，最多 4 座">Private tour · per helicopter, up to 4 seats</span>
+              <b>IDR 10 499 000</b>
+              <span class="was">IDR 13 596 000</span><span class="off">−20%</span>
+            </div>
+          </div>
+          <div class="tour-actions">
+          <button class="maplink" type="button" data-map="images/map-02-uluwatu-skyline.jpeg?v=2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span data-zh="航线图">Route map</span></button>
+            <a class="tour-cta" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20Uluwatu%20Skyline%20tour%20%2815%20minutes%29%20from%20Nusa%20Dua%20Heliport.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E3%80%8CUluwatu%20Skyline%20tour%E3%80%8D%EF%BC%8815%20%E5%88%86%E9%92%9F%EF%BC%89%EF%BC%8C%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%87%BA%E5%8F%91%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="咨询预订">Enquire</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 03 -->
+    <article class="tour reveal">
+      <div class="tour-figure">
+        <img src="images/tour-03-island-of-gods.jpeg?v=2" alt="Dreamland Beach and the cliffs of the Bukit peninsula from the air" />
+        <span class="tour-dur"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#033064" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-zh="20 分钟">20 minutes</span></span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-num" data-zh="航线 03">Route 03</div>
+        <h3 data-zh="俯瞰神明之岛">Above the Island of Gods</h3>
+        <p class="desc" data-zh="涵盖天际线航线的全部景观，并补上半岛两端：努沙杜瓦浪花撞击礁壁的水花喷泉，以及西海岸的梦幻海滩。二十分钟，完整环游布吉半岛。">Everything the Skyline covers, plus the two ends of the peninsula it leaves out — the Waterblow at Nusa Dua where the swell hits the reef wall, and Dreamland on the west coast. The full Bukit circuit in twenty minutes.</p>
+        <div class="hl"><span data-zh="乌鲁瓦图天际线航线">Uluwatu Skyline Tour</span><span data-zh="水花喷泉">Waterblow</span><span data-zh="梦幻海滩">Dreamland Beach</span></div>
+        <div class="tour-route"><b data-zh="航线">Route</b><span data-zh="努沙杜瓦直升机场 → 水花喷泉 → 神鹰广场 → 梦幻海滩 → 乌鲁瓦图神庙 → 娘娘海滩 → 梅拉斯蒂海滩 → 潘达瓦海滩 → 努沙杜瓦直升机场">Nusa Dua Heliport → Waterblow → GWK → Dreamland Beach → Uluwatu Temple → Nyang-Nyang Beach → Melasti Beach → Pandawa Beach → Nusa Dua Heliport</span></div>
+        <div class="tour-foot">
+          <div class="tour-prices">
+            <div class="tour-price">
+              <span data-zh="拼座观光 · 每座">Shared tour · per seat</span>
+              <b>IDR 4 499 000</b>
+            </div>
+            <div class="tour-price">
+              <span data-zh="包机观光 · 每架，最多 4 座">Private tour · per helicopter, up to 4 seats</span>
+              <b>IDR 14 299 000</b>
+              <span class="was">IDR 17 996 000</span><span class="off">−20%</span>
+            </div>
+          </div>
+          <div class="tour-actions">
+          <button class="maplink" type="button" data-map="images/map-03-island-of-gods.jpeg?v=2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span data-zh="航线图">Route map</span></button>
+            <a class="tour-cta" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20Above%20the%20Island%20of%20Gods%20tour%20%2820%20minutes%29%20from%20Nusa%20Dua%20Heliport.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E3%80%8CAbove%20the%20Island%20of%20Gods%20tour%E3%80%8D%EF%BC%8820%20%E5%88%86%E9%92%9F%EF%BC%89%EF%BC%8C%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%87%BA%E5%8F%91%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="咨询预订">Enquire</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 04 -->
+    <article class="tour tour--alt reveal">
+      <div class="tour-figure">
+        <img src="images/tour-04-two-coastlines.jpeg?v=2" alt="Tanah Lot temple on its rock platform at low tide" />
+        <span class="tour-dur"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#033064" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-zh="40 分钟">40 minutes</span></span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-num" data-zh="航线 04">Route 04</div>
+        <h3 data-zh="长谷与乌鲁瓦图：双海岸之旅">Canggu &amp; Uluwatu: A Tale of Two Coastlines</h3>
+        <p class="desc" data-zh="一次飞行，两种截然不同的海岸线。先是布吉半岛的悬崖与隐秘海湾，再向北飞越绵长的冲浪海滩——库塔、水明漾、佩雷雷南、努阿努——直至矗立礁石之上的海神庙，随后沿原路返航。">Two very different shorelines in one flight. The cliffs and hidden coves of the Bukit, then north up the long surf beaches — Kuta, Seminyak, Pererenan, Nuanu — to Tanah Lot sitting out on its rock, and back down the same coast.</p>
+        <div class="hl"><span data-zh="俯瞰神明之岛">Above the Island of Gods</span><span data-zh="库塔海滩">Kuta Beach</span><span data-zh="海神庙">Tanah Lot Temple</span></div>
+        <div class="tour-route"><b data-zh="航线">Route</b><span data-zh="努沙杜瓦直升机场 → 水花喷泉 → 潘达瓦海滩 → 梅拉斯蒂海滩 → 娘娘海滩 → 乌鲁瓦图神庙 → 梦幻海滩 → 库塔海滩 → 水明漾海滩 → 佩雷雷南海滩 → 努阿努 → 海神庙 → 努沙杜瓦直升机场">Nusa Dua Heliport → Waterblow → Pandawa Beach → Melasti Beach → Nyang-Nyang Beach → Uluwatu Temple → Dreamland Beach → Kuta Beach → Seminyak Beach → Pererenan Beach → Nuanu → Tanah Lot Temple → Nusa Dua Heliport</span></div>
+        <div class="tour-foot">
+          <div class="tour-prices">
+            <div class="tour-price">
+              <span data-zh="拼座观光 · 每座">Shared tour · per seat</span>
+              <b>IDR 7 999 000</b>
+            </div>
+            <div class="tour-price">
+              <span data-zh="包机观光 · 每架，最多 4 座">Private tour · per helicopter, up to 4 seats</span>
+              <b>IDR 24 999 000</b>
+              <span class="was">IDR 31 996 000</span><span class="off">−20%</span>
+            </div>
+          </div>
+          <div class="tour-actions">
+          <button class="maplink" type="button" data-map="images/map-04-two-coastlines.jpeg?v=2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span data-zh="航线图">Route map</span></button>
+            <a class="tour-cta" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20Canggu%20%26%20Uluwatu%20tour%20%2840%20minutes%29%20from%20Nusa%20Dua%20Heliport.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E3%80%8CCanggu%20%26%20Uluwatu%20tour%E3%80%8D%EF%BC%8840%20%E5%88%86%E9%92%9F%EF%BC%89%EF%BC%8C%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%87%BA%E5%8F%91%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="咨询预订">Enquire</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 05 -->
+    <article class="tour reveal">
+      <div class="tour-figure">
+        <img src="images/tour-05-penida-sky-escape.jpeg?v=2" alt="A turquoise tidal pool in the limestone coast of Nusa Penida" />
+        <span class="tour-dur"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#033064" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-zh="45 分钟">45 minutes</span></span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-num" data-zh="航线 05">Route 05</div>
+        <h3 data-zh="佩尼达岛空中之旅">Nusa Penida Sky Escape</h3>
+        <p class="desc" data-zh="跨越巴东海峡飞往离岛。浪涛在礁石上炸裂的恶魔之泪、断桥海滩的天然石拱、克林金海滩青翠的海岬，以及返程途中的蝠鲼观赏点——数分钟即达，无需乘船横渡。">Across the Badung Strait to the islands. Devil's Tears where the swell explodes off the rock, the arch at Broken Beach, the green headland at Kelingking, and Manta Point on the way home — reached in minutes instead of a boat crossing.</p>
+        <div class="hl"><span data-zh="克林金海滩">Kelingking Beach</span><span data-zh="断桥海滩">Broken Beach</span><span data-zh="蝠鲼观赏点">Manta Point</span></div>
+        <div class="tour-route"><b data-zh="航线">Route</b><span data-zh="努沙杜瓦直升机场 → 水花喷泉 → 恶魔之泪 → 断桥海滩 → 克林金海滩 → 蝠鲼观赏点 → 努沙杜瓦直升机场">Nusa Dua Heliport → Waterblow → Devil's Tears → Broken Beach → Kelingking Beach → Manta Point → Nusa Dua Heliport</span></div>
+        <div class="tour-foot">
+          <div class="tour-prices">
+            <div class="tour-price">
+              <span data-zh="拼座观光 · 每座">Shared tour · per seat</span>
+              <b>IDR 8 999 000</b>
+            </div>
+            <div class="tour-price">
+              <span data-zh="包机观光 · 每架，最多 4 座">Private tour · per helicopter, up to 4 seats</span>
+              <b>IDR 27 999 000</b>
+              <span class="was">IDR 35 996 000</span><span class="off">−20%</span>
+            </div>
+          </div>
+          <div class="tour-actions">
+          <button class="maplink" type="button" data-map="images/map-05-penida-sky-escape.jpeg?v=2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span data-zh="航线图">Route map</span></button>
+            <a class="tour-cta" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20Nusa%20Penida%20Sky%20Escape%20%2845%20minutes%29%20from%20Nusa%20Dua%20Heliport.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E3%80%8C%E4%BD%A9%E5%B0%BC%E8%BE%BE%E5%B2%9B%E7%A9%BA%E4%B8%AD%E4%B9%8B%E6%97%85%E3%80%8D%EF%BC%8845%20%E5%88%86%E9%92%9F%EF%BC%89%EF%BC%8C%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%87%BA%E5%8F%91%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="咨询预订">Enquire</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 06 -->
+    <article class="tour tour--alt reveal">
+      <div class="tour-figure">
+        <img src="images/tour-06-four-islands-perfect.jpeg?v=2" alt="Kelingking Beach and its headland from directly above" />
+        <span class="tour-dur"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#033064" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-zh="55 分钟">55 minutes</span></span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-num" data-zh="航线 06">Route 06</div>
+        <h3 data-zh="四岛精华之旅">Four Islands Perfect Tour</h3>
+        <p class="desc" data-zh="在佩尼达岛环线基础上，返程加入巴厘岛本岛海岸——跨海回程途经梅拉斯蒂海滩与神鹰广场后降落。一小时内，四岛与布吉半岛尽收眼底。">The Penida circuit with Bali's own coast added to the return leg — back across the strait to Melasti and Garuda Wisnu Kencana before the pad. Four islands and the Bukit in under an hour.</p>
+        <div class="hl"><span data-zh="佩尼达岛空中之旅">Nusa Penida Sky Escape</span><span data-zh="神鹰广场">GWK</span><span data-zh="梅拉斯蒂海滩">Melasti Beach</span></div>
+        <div class="tour-route"><b data-zh="航线">Route</b><span data-zh="努沙杜瓦直升机场 → 水花喷泉 → 恶魔之泪 → 断桥海滩 → 克林金海滩 → 蝠鲼观赏点 → 梅拉斯蒂海滩 → 神鹰广场 → 努沙杜瓦直升机场">Nusa Dua Heliport → Waterblow → Devil's Tears → Broken Beach → Kelingking Beach → Manta Point → Melasti Beach → GWK → Nusa Dua Heliport</span></div>
+        <div class="tour-foot">
+          <div class="tour-prices">
+            <div class="tour-price">
+              <span data-zh="拼座观光 · 每座">Shared tour · per seat</span>
+              <b>IDR 10 999 000</b>
+            </div>
+            <div class="tour-price">
+              <span data-zh="包机观光 · 每架，最多 4 座">Private tour · per helicopter, up to 4 seats</span>
+              <b>IDR 34 799 000</b>
+              <span class="was">IDR 43 996 000</span><span class="off">−20%</span>
+            </div>
+          </div>
+          <div class="tour-actions">
+          <button class="maplink" type="button" data-map="images/map-06-four-islands-perfect.jpeg?v=2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span data-zh="航线图">Route map</span></button>
+            <a class="tour-cta" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20Four%20Islands%20Perfect%20Tour%20%2855%20minutes%29%20from%20Nusa%20Dua%20Heliport.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E3%80%8C%E5%9B%9B%E5%B2%9B%E7%B2%BE%E5%8D%8E%E4%B9%8B%E6%97%85%E3%80%8D%EF%BC%8855%20%E5%88%86%E9%92%9F%EF%BC%89%EF%BC%8C%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%87%BA%E5%8F%91%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="咨询预订">Enquire</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 07 -->
+    <article class="tour reveal">
+      <div class="tour-figure">
+        <img src="images/tour-07-four-islands-e2w.jpeg?v=2" alt="The limestone stacks and turquoise bays of Diamond Beach, east Nusa Penida" />
+        <span class="tour-dur"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#033064" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-zh="65 分钟">65 minutes</span></span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-num" data-zh="航线 07">Route 07</div>
+        <h3 data-zh="四岛东西全览">Four Islands East to West</h3>
+        <p class="desc" data-zh="纵贯佩尼达岛全境，而非仅止于西端——飞越克林金海滩后续抵天线宝宝山与钻石海滩的海蚀柱群，再沿巴厘岛南岸返回乌鲁瓦图神庙。">The full length of Nusa Penida rather than its western corner — on past Kelingking to the Teletubbies Hills and the sea stacks at Diamond Beach, then back along Bali's south coast to Uluwatu Temple.</p>
+        <div class="hl"><span data-zh="四岛精华之旅">Four Islands Perfect Tour</span><span data-zh="钻石海滩">Diamond Beach</span><span data-zh="乌鲁瓦图神庙">Uluwatu Temple</span></div>
+        <div class="tour-route"><b data-zh="航线">Route</b><span data-zh="努沙杜瓦直升机场 → 水花喷泉 → 恶魔之泪 → 断桥海滩 → 克林金海滩 → 天线宝宝山 → 钻石海滩 → 蝠鲼观赏点 → 梅拉斯蒂海滩 → 娘娘海滩 → 乌鲁瓦图神庙 → 神鹰广场 → 努沙杜瓦直升机场">Nusa Dua Heliport → Waterblow → Devil's Tears → Broken Beach → Kelingking Beach → Teletubbies Hills → Diamond Beach → Manta Point → Melasti Beach → Nyang-Nyang Beach → Uluwatu Temple → GWK → Nusa Dua Heliport</span></div>
+        <div class="tour-foot">
+          <div class="tour-prices">
+            <div class="tour-price">
+              <span data-zh="拼座观光 · 每座">Shared tour · per seat</span>
+              <b>IDR 12 999 000</b>
+            </div>
+            <div class="tour-price">
+              <span data-zh="包机观光 · 每架，最多 4 座">Private tour · per helicopter, up to 4 seats</span>
+              <b>IDR 41 999 000</b>
+              <span class="was">IDR 51 996 000</span><span class="off">−20%</span>
+            </div>
+          </div>
+          <div class="tour-actions">
+          <button class="maplink" type="button" data-map="images/map-07-four-islands-e2w.jpeg?v=2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span data-zh="航线图">Route map</span></button>
+            <a class="tour-cta" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20Four%20Islands%20East%20to%20West%20tour%20%2865%20minutes%29%20from%20Nusa%20Dua%20Heliport.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E3%80%8CFour%20Islands%20East%20to%20West%20tour%E3%80%8D%EF%BC%8865%20%E5%88%86%E9%92%9F%EF%BC%89%EF%BC%8C%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%87%BA%E5%8F%91%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="咨询预订">Enquire</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 08 -->
+    <article class="tour tour--alt reveal">
+      <div class="tour-figure">
+        <img src="images/tour-08-volcanoes-temples.jpeg?v=2" alt="The ridge and crater rim of Mount Agung above the cloud line" />
+        <span class="tour-dur"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#033064" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-zh="75 分钟">75 minutes</span></span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-num" data-zh="航线 08">Route 08</div>
+        <h3 data-zh="火山与神庙">Volcanoes and Temples</h3>
+        <p class="desc" data-zh="向内陆与北部飞行——掠过乌布抵达巴图尔火山口，西行越过加蒂鲁维梯田，再南下海神庙，沿长谷海岸返航。这是几乎无人从空中一睹的岛屿腹地。">Inland and north — over Ubud to the Batur caldera, west across the Jatiluwih terraces, then down to Tanah Lot and home along the Canggu coast. The interior of the island, which almost no visitor sees from above.</p>
+        <div class="hl"><span data-zh="巴图尔火山">Batur Volcano</span><span data-zh="加蒂鲁维梯田">Jatiluwih Rice Terraces</span><span data-zh="海神庙">Tanah Lot Temple</span></div>
+        <div class="tour-route"><b data-zh="航线">Route</b><span data-zh="努沙杜瓦直升机场 → 海龟岛 → 乌布 → 巴图尔火山 → 加蒂鲁维 → 海神庙 → 努阿努 → 库塔海滩 → 神鹰广场 → 努沙杜瓦直升机场">Nusa Dua Heliport → Turtle Island → Ubud → Mt. Batur → Jatiluwih → Tanah Lot Temple → Nuanu → Kuta Beach → GWK → Nusa Dua Heliport</span></div>
+        <div class="tour-foot">
+          <div class="tour-prices">
+            <div class="tour-price">
+              <span data-zh="拼座观光 · 每座">Shared tour · per seat</span>
+              <b>IDR 14 999 000</b>
+            </div>
+            <div class="tour-price">
+              <span data-zh="包机观光 · 每架，最多 4 座">Private tour · per helicopter, up to 4 seats</span>
+              <b>IDR 48 499 000</b>
+              <span class="was">IDR 59 996 000</span><span class="off">−20%</span>
+            </div>
+          </div>
+          <div class="tour-actions">
+          <button class="maplink" type="button" data-map="images/map-08-volcanoes-temples.jpeg?v=2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span data-zh="航线图">Route map</span></button>
+            <a class="tour-cta" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20Volcanoes%20and%20Temples%20tour%20%2875%20minutes%29%20from%20Nusa%20Dua%20Heliport.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E3%80%8CVolcanoes%20and%20Temples%20tour%E3%80%8D%EF%BC%8875%20%E5%88%86%E9%92%9F%EF%BC%89%EF%BC%8C%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%87%BA%E5%8F%91%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="咨询预订">Enquire</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 09 -->
+    <article class="tour reveal">
+      <div class="tour-figure">
+        <img src="images/tour-09-volcanoes-islands.jpeg?v=2" alt="Nusa Lembongan and Ceningan with Mount Agung on the horizon" />
+        <span class="tour-dur"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#033064" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-zh="85 分钟">85 minutes</span></span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-num" data-zh="航线 09">Route 09</div>
+        <h3 data-zh="火山与海岛">Volcanoes and Islands</h3>
+        <p class="desc" data-zh="一次飞行，纵览岛屿两端——先是佩尼达岛海岸，继而北上东岸，经芒吉斯抵达阿贡与巴图尔两座火山，再南下飞越乌布。">Both halves of the island in one flight — the Penida coast first, then north up the east shore past Manggis to Agung and Batur, the two volcanoes back to back, and down over Ubud.</p>
+        <div class="hl"><span data-zh="佩尼达岛">Nusa Penida</span><span data-zh="巴图尔火山">Batur Volcano</span><span data-zh="阿贡火山">Agung Volcano</span></div>
+        <div class="tour-route"><b data-zh="航线">Route</b><span data-zh="努沙杜瓦直升机场 → 蝠鲼观赏点 → 克林金海滩 → 恶魔之泪 → 芒吉斯 → 阿贡火山 → 巴图尔火山 → 乌布 → 海龟岛 → 努沙杜瓦直升机场">Nusa Dua Heliport → Manta Point → Kelingking Beach → Devil's Tears → Manggis → Mt. Agung → Mt. Batur → Ubud → Turtle Island → Nusa Dua Heliport</span></div>
+        <div class="tour-foot">
+          <div class="tour-prices">
+            <div class="tour-price">
+              <span data-zh="拼座观光 · 每座">Shared tour · per seat</span>
+              <b>IDR 16 999 000</b>
+            </div>
+            <div class="tour-price">
+              <span data-zh="包机观光 · 每架，最多 4 座">Private tour · per helicopter, up to 4 seats</span>
+              <b>IDR 54 999 000</b>
+              <span class="was">IDR 67 996 000</span><span class="off">−20%</span>
+            </div>
+          </div>
+          <div class="tour-actions">
+          <button class="maplink" type="button" data-map="images/map-09-volcanoes-islands.jpeg?v=2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span data-zh="航线图">Route map</span></button>
+            <a class="tour-cta" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20Volcanoes%20and%20Islands%20tour%20%2885%20minutes%29%20from%20Nusa%20Dua%20Heliport.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E3%80%8CVolcanoes%20and%20Islands%20tour%E3%80%8D%EF%BC%8885%20%E5%88%86%E9%92%9F%EF%BC%89%EF%BC%8C%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%87%BA%E5%8F%91%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="咨询预订">Enquire</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 10 -->
+    <article class="tour tour--alt reveal">
+      <div class="tour-figure">
+        <img src="images/tour-10-all-bali.jpeg?v=2" alt="Ubud's rice fields and palm canopy at sunrise with the volcanoes beyond" />
+        <span class="tour-dur"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#033064" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-zh="100 分钟">100 minutes</span></span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-num" data-zh="航线 10">Route 10</div>
+        <h3 data-zh="巴厘全岛之旅">All Bali Tour</h3>
+        <p class="desc" data-zh="一次飞行，尽览全部航线。佩尼达岛、东海岸、两座火山、加蒂鲁维梯田、海神庙、长谷海滩与乌鲁瓦图悬崖——一趟环线，一百分钟，绝无重复。">The whole catalogue in a single flight. Nusa Penida, the east coast, both volcanoes, the Jatiluwih terraces, Tanah Lot, the Canggu beaches and the Uluwatu cliffs — one loop, one hundred minutes, no repeats.</p>
+        <div class="hl"><span data-zh="佩尼达岛">Nusa Penida</span><span data-zh="火山群">Volcanoes</span><span data-zh="长谷与乌鲁瓦图海岸线">Canggu &amp; Uluwatu Coastlines</span></div>
+        <div class="tour-route"><b data-zh="航线">Route</b><span data-zh="努沙杜瓦直升机场 → 蝠鲼观赏点 → 克林金海滩 → 恶魔之泪 → 芒吉斯 → 阿贡火山 → 巴图尔火山 → 加蒂鲁维 → 海神庙 → 努阿努 → 库塔海滩 → 乌鲁瓦图神庙 → 梅拉斯蒂海滩 → 努沙杜瓦直升机场">Nusa Dua Heliport → Manta Point → Kelingking Beach → Devil's Tears → Manggis → Mt. Agung → Mt. Batur → Jatiluwih → Tanah Lot Temple → Nuanu → Kuta Beach → Uluwatu Temple → Melasti Beach → Nusa Dua Heliport</span></div>
+        <div class="tour-foot">
+          <div class="tour-prices">
+            <div class="tour-price">
+              <span data-zh="拼座观光 · 每座">Shared tour · per seat</span>
+              <b>IDR 20 999 000</b>
+            </div>
+            <div class="tour-price">
+              <span data-zh="包机观光 · 每架，最多 4 座">Private tour · per helicopter, up to 4 seats</span>
+              <b>IDR 64 999 000</b>
+              <span class="was">IDR 83 996 000</span><span class="off">−20%</span>
+            </div>
+          </div>
+          <div class="tour-actions">
+          <button class="maplink" type="button" data-map="images/map-10-all-bali.jpeg?v=2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span data-zh="航线图">Route map</span></button>
+            <a class="tour-cta" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20All%20Bali%20Tour%20%28100%20minutes%29%20from%20Nusa%20Dua%20Heliport.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E3%80%8C%E5%B7%B4%E5%8E%98%E5%85%A8%E5%B2%9B%E4%B9%8B%E6%97%85%E3%80%8D%EF%BC%88100%20%E5%88%86%E9%92%9F%EF%BC%89%EF%BC%8C%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%87%BA%E5%8F%91%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="咨询预订">Enquire</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===== TRANSFERS ===== -->
+<section class="section" id="transfers">
+  <div class="container">
+    <div class="center reveal">
+      <span class="eyebrow" data-zh="点对点">Point to point</span>
+      <h2 class="title" data-zh="尊享直升机接送">Signature Helicopter Transfers</h2>
+      <div class="rule"></div>
+      <p class="lead" data-zh="自努沙杜瓦直升机场出发的单程包机接送。价格按整机计算，最多可载四位宾客；所示时间为实际飞行时间。">One-way private transfers from Nusa Dua Heliport. Rates are per helicopter for up to four guests, and the time shown is on-board flight time.</p>
+    </div>
+
+    <div class="tf-wrap">
+      <div class="tf-scroll">
+        <table class="tf">
+          <thead>
+            <tr>
+              <th scope="col" data-zh="航线">Route</th>
+              <th scope="col" data-zh="实际飞行时间">On-board flight time</th>
+              <th scope="col" data-zh="包机接送价格">Private transfer</th>
+              <th scope="col"><span class="sr-only"></span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="route" data-zh-route="吉利特拉旺安岛">Gili Trawangan</td>
+              <td class="time" data-zh="30 分钟">30 mins</td>
+              <td class="rate">IDR 54,499,000</td>
+              <td class="bk"><a class="tf-book" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20helicopter%20transfer%20from%20Nusa%20Dua%20Heliport%20to%20Gili%20Trawangan.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%89%8D%E5%BE%80%E5%90%89%E5%88%A9%E7%89%B9%E6%8B%89%E6%97%BA%E5%AE%89%E5%B2%9B%E7%9A%84%E7%9B%B4%E5%8D%87%E6%9C%BA%E6%8E%A5%E9%80%81%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="预订">Book</a></td>
+            </tr>
+            <tr>
+              <td class="route" data-zh-route="佩尼达岛东部">Nusa Penida East<small data-zh="Semaya">Semaya</small></td>
+              <td class="time" data-zh="22 分钟">22 mins</td>
+              <td class="rate">IDR 33,299,000</td>
+              <td class="bk"><a class="tf-book" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20helicopter%20transfer%20from%20Nusa%20Dua%20Heliport%20to%20Nusa%20Penida%20East%20%28Semaya%29.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%89%8D%E5%BE%80%E4%BD%A9%E5%B0%BC%E8%BE%BE%E5%B2%9B%E4%B8%9C%E9%83%A8%EF%BC%88Semaya%EF%BC%89%E7%9A%84%E7%9B%B4%E5%8D%87%E6%9C%BA%E6%8E%A5%E9%80%81%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="预订">Book</a></td>
+            </tr>
+            <tr>
+              <td class="route" data-zh-route="佩尼达岛西部">Nusa Penida West<small data-zh="Xpark">Xpark</small></td>
+              <td class="time" data-zh="15 分钟">15 mins</td>
+              <td class="rate">IDR 21,599,000</td>
+              <td class="bk"><a class="tf-book" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20helicopter%20transfer%20from%20Nusa%20Dua%20Heliport%20to%20Nusa%20Penida%20West%20%28Xpark%29.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%89%8D%E5%BE%80%E4%BD%A9%E5%B0%BC%E8%BE%BE%E5%B2%9B%E8%A5%BF%E9%83%A8%EF%BC%88Xpark%EF%BC%89%E7%9A%84%E7%9B%B4%E5%8D%87%E6%9C%BA%E6%8E%A5%E9%80%81%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="预订">Book</a></td>
+            </tr>
+            <tr>
+              <td class="route" data-zh-route="乌布阿雍河区域">Ubud Ayung Area<small data-zh="Kuber Adventure">Kuber Adventure</small></td>
+              <td class="time" data-zh="15 分钟">15 mins</td>
+              <td class="rate">IDR 29,199,000</td>
+              <td class="bk"><a class="tf-book" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20helicopter%20transfer%20from%20Nusa%20Dua%20Heliport%20to%20the%20Ubud%20Ayung%20area.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%89%8D%E5%BE%80%E4%B9%8C%E5%B8%83%E9%98%BF%E9%9B%8D%E6%B2%B3%E5%8C%BA%E5%9F%9F%E7%9A%84%E7%9B%B4%E5%8D%87%E6%9C%BA%E6%8E%A5%E9%80%81%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="预订">Book</a></td>
+            </tr>
+            <tr>
+              <td class="route" data-zh-route="乌布德格拉朗区域">Ubud Tegalalang Area<small data-zh="Viceroy 酒店">Viceroy Hotel</small></td>
+              <td class="time" data-zh="15 分钟">15 mins</td>
+              <td class="rate">IDR 31,499,000</td>
+              <td class="bk"><a class="tf-book" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20helicopter%20transfer%20from%20Nusa%20Dua%20Heliport%20to%20the%20Ubud%20Tegalalang%20area.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%89%8D%E5%BE%80%E4%B9%8C%E5%B8%83%E5%BE%B7%E6%A0%BC%E6%8B%89%E6%9C%97%E5%8C%BA%E5%9F%9F%E7%9A%84%E7%9B%B4%E5%8D%87%E6%9C%BA%E6%8E%A5%E9%80%81%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="预订">Book</a></td>
+            </tr>
+            <tr>
+              <td class="route" data-zh-route="长谷区域">Canggu Area<small data-zh="努阿努直升机场">Nuanu Heliport</small></td>
+              <td class="time" data-zh="15 分钟">15 mins</td>
+              <td class="rate">IDR 18,399,000</td>
+              <td class="bk"><a class="tf-book" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20helicopter%20transfer%20from%20Nusa%20Dua%20Heliport%20to%20the%20Canggu%20area.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%89%8D%E5%BE%80%E9%95%BF%E8%B0%B7%E5%8C%BA%E5%9F%9F%E7%9A%84%E7%9B%B4%E5%8D%87%E6%9C%BA%E6%8E%A5%E9%80%81%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="预订">Book</a></td>
+            </tr>
+            <tr>
+              <td class="route" data-zh-route="加蒂鲁维区域">Jatiluwih Area<small data-zh="Jatiluwih 生态农场">Jatiluwih Ecofarm</small></td>
+              <td class="time" data-zh="20 分钟">20 mins</td>
+              <td class="rate">IDR 34,999,000</td>
+              <td class="bk"><a class="tf-book" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20helicopter%20transfer%20from%20Nusa%20Dua%20Heliport%20to%20the%20Jatiluwih%20area.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%89%8D%E5%BE%80%E5%8A%A0%E8%92%82%E9%B2%81%E7%BB%B4%E5%8C%BA%E5%9F%9F%E7%9A%84%E7%9B%B4%E5%8D%87%E6%9C%BA%E6%8E%A5%E9%80%81%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="预订">Book</a></td>
+            </tr>
+            <tr>
+              <td class="route" data-zh-route="蓝梦岛区域">Nusa Lembongan Area<small data-zh="Ancak">Ancak</small></td>
+              <td class="time" data-zh="15 分钟">15 mins</td>
+              <td class="rate">IDR 25,399,000</td>
+              <td class="bk"><a class="tf-book" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20helicopter%20transfer%20from%20Nusa%20Dua%20Heliport%20to%20Nusa%20Lembongan.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%89%8D%E5%BE%80%E8%93%9D%E6%A2%A6%E5%B2%9B%E7%9A%84%E7%9B%B4%E5%8D%87%E6%9C%BA%E6%8E%A5%E9%80%81%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="预订">Book</a></td>
+            </tr>
+            <tr>
+              <td class="route" data-zh-route="金巴兰区域">Jimbaran Area<small data-zh="莱佛士酒店">Raffles Hotel</small></td>
+              <td class="time" data-zh="10 分钟">10 mins</td>
+              <td class="rate">IDR 15,399,000</td>
+              <td class="bk"><a class="tf-book" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20the%20helicopter%20transfer%20from%20Nusa%20Dua%20Heliport%20to%20the%20Jimbaran%20area.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%89%8D%E5%BE%80%E9%87%91%E5%B7%B4%E5%85%B0%E5%8C%BA%E5%9F%9F%E7%9A%84%E7%9B%B4%E5%8D%87%E6%9C%BA%E6%8E%A5%E9%80%81%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F" data-zh="预订">Book</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEPARTURE POINT ===== -->
+<section class="section section--soft" id="helipad" style="padding-bottom:0">
+  <div class="container">
+    <div class="center reveal">
+      <span class="eyebrow" data-zh="旅程起点">Where your journey starts</span>
+      <h2 class="title" data-zh="我们的停机坪">Our Helipads</h2>
+      <div class="rule"></div>
+      <p class="lead" data-zh="以上所有观光与接送航线均自努沙杜瓦起飞。另有两座私人停机坪，通往西海岸与吉利群岛。">Every tour and transfer above departs Nusa Dua. Two further private helipads open up the west coast and the Gili Islands.</p>
+    </div>
+
+    <div class="pad">
+    <div class="dep reveal d1">
+      <div class="dep-photo">
+        <span class="dep-pin" data-zh="您的出发点">Your departure point</span>
+        <img loading="lazy" decoding="async" src="images/loc-nusadua.jpeg?v=2" alt="Guest lounge at Nusa Dua Heliport, looking out to the apron" />
+      </div>
+      <div class="dep-body">
+        <div class="dep-region" data-zh="巴厘岛 · 南部">Bali &middot; South</div>
+        <h3 data-zh="努沙杜瓦停机坪">Nusa Dua Helipad</h3>
+        <p data-zh="办理登机、与飞行员会面，随即步行登机。自停机坪起飞，数分钟即可抵达陆路需数小时才能到达之地。">Check in, meet your pilot and walk out to the aircraft. From the pad it is minutes to the places the road takes hours to reach.</p>
+        <div class="dep-times">
+          <span data-zh="<b>10 分钟</b> &amp;middot; 金巴兰"><b>10 min</b> &middot; Jimbaran</span>
+          <span data-zh="<b>15 分钟</b> &amp;middot; 长谷"><b>15 min</b> &middot; Canggu</span>
+          <span data-zh="<b>15 分钟</b> &amp;middot; 佩尼达岛"><b>15 min</b> &middot; Nusa Penida</span>
+          <span data-zh="<b>30 分钟</b> &amp;middot; 吉利特拉旺安岛"><b>30 min</b> &middot; Gili Trawangan</span>
+        </div>
+        <div class="dep-map"><img loading="lazy" decoding="async" src="images/map-nusadua.jpeg?v=2" alt="Map showing the location of Nusa Dua Heliport" /></div>
+        <div class="dep-addr">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1E6FA8" stroke-width="1.6" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Jl. Raya Nusa Dua Selatan, Lot III, Sawangan, Kabupaten Badung, Bali 80363
+        </div>
+        <a class="dir-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Jl.%20Raya%20Nusa%20Dua%20Selatan%2C%20Lot%20III%2C%20Sawangan%2C%20Kabupaten%20Badung%2C%20Bali%2080363" data-zh="查看路线">Get directions</a>
+      </div>
+    </div>
+    </div>
+
+
+    <div class="pad">
+    <div class="dep dep--net reveal">
+      <div class="dep-photo">
+        <span class="dep-pin" data-zh="长谷（Canggu）">Canggu</span>
+        <img loading="lazy" decoding="async" src="images/loc-canggu.jpeg?v=2" alt="Nuanu Heliport on Bali's west coast" />
+      </div>
+      <div class="dep-body">
+        <div class="dep-region" data-zh="巴厘岛 · 西海岸">Bali &middot; West Coast</div>
+        <h3 data-zh="努阿努直升机场">Nuanu Heliport</h3>
+        <p data-zh="西海岸停机坪，自努沙杜瓦沿海岸线飞行十五分钟即达，是长谷、佩雷雷南与海神庙一带的抵达点。">The west-coast pad, fifteen minutes up the shoreline from Nusa Dua and the arrival point for Canggu, Pererenan and Tanah Lot.</p>
+        <div class="dep-times"><span data-zh="<b>15 分钟</b> &amp;middot; 自努沙杜瓦"><b>15 min</b> &middot; from Nusa Dua</span></div>
+        <div class="dep-map"><img loading="lazy" decoding="async" src="images/map-canggu.jpeg?v=2" alt="Map showing the location of Nuanu Heliport" /></div>
+        <div class="dep-addr">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1E6FA8" stroke-width="1.6" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          94P4+C2X, Beraban, Kec. Kediri, Kabupaten Tabanan, Bali
+        </div>
+        <a class="dir-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=94P4%2BC2X%2C%20Beraban%2C%20Kec.%20Kediri%2C%20Kabupaten%20Tabanan%2C%20Bali" data-zh="查看路线">Get directions</a>
+      </div>
+    </div>
+          </div>
+
+
+    <div class="pad">
+    <div class="dep dep--net reveal">
+      <div class="dep-photo">
+        <span class="dep-pin" data-zh="吉利群岛">Gili Islands</span>
+        <img loading="lazy" decoding="async" src="images/loc-gili.jpeg?v=2" alt="Gili Trawangan Heliport" />
+      </div>
+      <div class="dep-body">
+        <div class="dep-region" data-zh="龙目岛 · 吉利特拉旺安">Lombok &middot; Gili Trawangan</div>
+        <h3 data-zh="吉利特拉旺安直升机场">Gili Trawangan Heliport</h3>
+        <p data-zh="机队网络中最远的一座停机坪，乘船前往需耗费整日。自努沙杜瓦飞行三十分钟，全程跨海。">The furthest pad in the network, and the one the boat crossing makes a day of. Thirty minutes from Nusa Dua, over open water the whole way.</p>
+        <div class="dep-times"><span data-zh="<b>30 分钟</b> &amp;middot; 自努沙杜瓦"><b>30 min</b> &middot; from Nusa Dua</span></div>
+        <div class="dep-map"><img loading="lazy" decoding="async" src="images/map-gili.jpeg?v=2" alt="Map showing the location of Gili Trawangan Heliport" /></div>
+        <div class="dep-addr">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1E6FA8" stroke-width="1.6" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          J2M+CR6 Gili Trawangan, Gili Indah, Kec. Pemenang, Kabupaten Lombok Utara, Nusa Tenggara Barat 83352
+        </div>
+        <a class="dir-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=J2M%2BCR6%20Gili%20Trawangan%2C%20Gili%20Indah%2C%20Kec.%20Pemenang%2C%20Kabupaten%20Lombok%20Utara" data-zh="查看路线">Get directions</a>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FLEET ===== -->
+<section class="section section--soft" id="fleet">
+  <div class="container">
+    <div class="center reveal">
+      <span class="eyebrow" data-zh="机型">The aircraft</span>
+      <h2 class="title" data-zh="为每段旅程匹配合适机型">The Right Aircraft for Every Journey</h2>
+      <div class="rule"></div>
+      <p class="lead" data-zh="两种机型，四架直升机，均为原厂全新交付。两种机型均可搭载一名飞行员与最多四位宾客。">Two types, four aircraft, every one delivered factory-fresh. Both carry one pilot and up to four guests.</p>
+    </div>
+
+    <div class="fleet-block reveal">
+      <div class="fleet-grid">
+        <div class="fleet-info">
+          <h3 data-zh="罗宾逊 R66">Robinson 66</h3>
+          <div class="reg">PK-VPN (2022) · PK-VPX (2023) · PK-VPY (2025)</div>
+          <div class="spec"><span class="k" data-zh="巡航速度">Cruise speed</span><span class="v" data-zh="最高 110 节（204 公里/小时）">Up to 110 knots (204 km/h)</span></div>
+          <div class="spec"><span class="k" data-zh="最大航程">Max. range</span><span class="v" data-zh="约 350 海里（650 公里）*">Approx. 350 nm (650 km)*</span></div>
+          <div class="spec"><span class="k" data-zh="载客量">Passenger capacity</span><span class="v" data-zh="1 名飞行员 + 最多 4 位乘客*">1 pilot + up to 4 passengers*</span></div>
+          <div class="spec"><span class="k" data-zh="行李容量">Baggage capacity</span><span class="v" data-zh="18 立方英尺（300 磅 / 136 公斤）*">18 ft³ (300 lb / 136 kg)*</span></div>
+          <p class="spec-note" data-zh="*视机型配置与实际载重而定。">*Subject to configuration and payload.</p>
+        </div>
+        <div class="fleet-gallery">
+          <img class="wide" src="images/fleet-hero.jpeg?v=2" alt="Robinson 66 in cruise above a volcanic ridge line" />
+          <img src="images/r66-pad.jpeg?v=2" alt="Robinson 66 on the helipad" />
+          <img src="images/r66-headset.jpeg?v=2" alt="Noise-cancelling aviation headset in the cabin" />
+        </div>
+      </div>
+    </div>
+
+    <div class="fleet-block rev reveal">
+      <div class="fleet-grid">
+        <div class="fleet-info">
+          <h3 data-zh="贝尔 505">Bell 505</h3>
+          <div class="reg">PK-DJG (2024)</div>
+          <div class="spec"><span class="k" data-zh="巡航速度">Cruise speed</span><span class="v" data-zh="125 节（231 公里/小时）">125 knots (231 km/h)</span></div>
+          <div class="spec"><span class="k" data-zh="最大航程">Max. range</span><span class="v" data-zh="306 海里（567 公里）*">306 nm (567 km)*</span></div>
+          <div class="spec"><span class="k" data-zh="载客量">Passenger capacity</span><span class="v" data-zh="1 名飞行员 + 最多 4 位乘客*">1 pilot + up to 4 passengers*</span></div>
+          <div class="spec"><span class="k" data-zh="行李容量">Baggage capacity</span><span class="v" data-zh="288 公斤*">288 kg*</span></div>
+          <p class="spec-note" data-zh="*视机型配置与实际载重而定。">*Subject to configuration and payload.</p>
+        </div>
+        <div class="fleet-gallery">
+          <img src="images/bell-pad.jpeg?v=2" alt="Bell 505 on the helipad" />
+          <img src="images/bell-cabin.jpeg?v=2" alt="Bell 505 cabin seating with headsets" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="contact-right"><img src="images/contact.jpeg?v=2" alt="Volcanic crater lake and steam at sunrise" /></div>
+  <div class="container contact-grid">
+    <div class="contact-left reveal">
+      <span class="contact-brand"><img src="images/balikami-logo.png?v=2" alt="Bali Kami Group" /></span>
+      <span class="eyebrow" data-zh="预订">Reservations</span>
+      <h2 data-zh="安排您的航班">Arrange Your Flight</h2>
+      <div class="rule"></div>
+      <p class="sub" data-zh="请告知您希望的航线与日期。我们将确认机型、起飞时段与天气评估，并在您决定期间为您保留席位。">Tell us the route and the date. We will confirm the aircraft, the departure window and the weather call, and hold the slot while you decide.</p>
+      <a class="c-item" target="_blank" rel="noopener" href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20a%20helicopter%20flight%20from%20Nusa%20Dua%20Heliport.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%87%BA%E5%8F%91%E7%9A%84%E7%9B%B4%E5%8D%87%E6%9C%BA%E8%88%AA%E7%8F%AD%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F">
+        <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.3-2.9-1.3-4.5 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.6 8.4-8 8.4z"/></svg></span>
+        <span>+62 811 3970 068<small data-zh="WhatsApp · 每日服务">WhatsApp · daily</small></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- route-map lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Route map">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close">&times;</button>
+  <img id="lbImg" alt="Route map" />
+</div>
+
+<!-- ===== FLOATING WHATSAPP ===== -->
+<a class="wa-float" target="_blank" rel="noopener" aria-label="Book on WhatsApp"
+   href="https://wa.me/628113970068?text=Hi%21%20I%27d%20like%20to%20book%20a%20helicopter%20flight%20from%20Nusa%20Dua%20Heliport.%20Could%20you%20let%20me%20know%20what%27s%20available%3F" data-zh-href="https://wa.me/628113970068?text=%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E6%83%B3%E9%A2%84%E8%AE%A2%E8%87%AA%E5%8A%AA%E6%B2%99%E6%9D%9C%E7%93%A6%E7%9B%B4%E5%8D%87%E6%9C%BA%E5%9C%BA%E5%87%BA%E5%8F%91%E7%9A%84%E7%9B%B4%E5%8D%87%E6%9C%BA%E8%88%AA%E7%8F%AD%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%91%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%97%B6%E6%AE%B5%E5%8F%AF%E4%BB%A5%E5%AE%89%E6%8E%92%EF%BC%9F">
+  <span class="wa-icon"><svg viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.3-2.9-1.3-4.5 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.6 8.4-8 8.4z"/></svg></span>
+  <span class="wa-label" data-zh="预订航班">Book a flight</span>
+</a>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>60)};
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  var burger=document.getElementById('burger'),links=document.getElementById('links');
+  burger.addEventListener('click',function(){
+    var open=links.classList.toggle('mobile-open');
+    burger.setAttribute('aria-expanded',open?'true':'false');
+  });
+  links.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){links.classList.remove('mobile-open');burger.setAttribute('aria-expanded','false');}
+  });
+
+  var ZH_TITLE='努沙杜瓦直升机场 — 空中观光与接送服务';
+  var EN_TITLE=document.title;
+  var ZH_DESC='从巴厘岛努沙杜瓦直升机场出发的私人直升机观光与接送服务：十条观光航线（10 至 100 分钟）及九条覆盖巴厘岛与周边岛屿的接送航线。';
+  var descEl=document.querySelector('meta[name=description]');
+  var EN_DESC=descEl?descEl.content:'';
+
+  function setLang(lang){
+    var zh = lang==='zh';
+    document.documentElement.lang = zh ? 'zh-Hans' : 'en';
+    document.title = zh ? ZH_TITLE : EN_TITLE;
+    if(descEl) descEl.content = zh ? ZH_DESC : EN_DESC;
+
+    [].slice.call(document.querySelectorAll('[data-zh]')).forEach(function(el){
+      if(el.dataset.en===undefined) el.dataset.en = el.innerHTML;
+      el.innerHTML = zh ? el.dataset.zh : el.dataset.en;
+    });
+    // transfer-table route cells keep their <small> sub-label
+    [].slice.call(document.querySelectorAll('[data-zh-route]')).forEach(function(td){
+      if(td.dataset.enRoute===undefined){
+        td.dataset.enRoute = td.childNodes[0].nodeValue;
+      }
+      td.childNodes[0].nodeValue = zh ? td.dataset.zhRoute : td.dataset.enRoute;
+    });
+    [].slice.call(document.querySelectorAll('[data-zh-href]')).forEach(function(a){
+      if(a.dataset.enHref===undefined) a.dataset.enHref = a.getAttribute('href');
+      a.setAttribute('href', zh ? a.dataset.zhHref : a.dataset.enHref);
+    });
+    [].slice.call(document.querySelectorAll('.lang-btn')).forEach(function(b){
+      b.classList.toggle('is-on', b.getAttribute('data-set-lang')===lang);
+    });
+    try{ localStorage.setItem('ndh-lang', lang); }catch(e){}
+  }
+
+  [].slice.call(document.querySelectorAll('.lang-btn')).forEach(function(b){
+    b.addEventListener('click',function(){ setLang(b.getAttribute('data-set-lang')); });
+  });
+
+  var saved=null;
+  try{ saved = localStorage.getItem('ndh-lang'); }catch(e){}
+  if(!saved && (navigator.language||'').toLowerCase().indexOf('zh')===0) saved='zh';
+  if(saved==='zh') setLang('zh');
+
+  var lb=document.getElementById('lb'), lbImg=document.getElementById('lbImg');
+  function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+  [].slice.call(document.querySelectorAll('.maplink')).forEach(function(b){
+    b.addEventListener('click',function(){
+      var card=b.closest('article.tour');
+      var name=card?card.querySelector('h3').textContent.trim():'Route map';
+      lbImg.setAttribute('src', b.getAttribute('data-map'));
+      lbImg.setAttribute('alt', name + ' \u2014 route map');
+      lb.classList.add('open');
+      document.body.style.overflow='hidden';
+    });
+  });
+  lb.addEventListener('click',function(e){ if(e.target===lb||e.target.id==='lbClose') closeLb(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&lb.classList.contains('open')) closeLb(); });
+
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(el){io.observe(el)});
+})();
+</script>
+</body>
+</html>
