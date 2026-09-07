@@ -169,8 +169,14 @@ header.nav.scrolled .burger span{background:var(--navy)}
 
 /* ---------- HERO ---------- */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:-2;background:var(--navy-deep)}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 32%}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:var(--navy-deep);overflow:hidden}
+/* poster sits underneath; the video fades in over it once it can actually play,
+   so a blocked or slow video degrades to a still rather than a navy void */
+.hero-bg .hero-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%}
+.hero-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;
+  opacity:0;transition:opacity 1.2s ease}
+.hero-bg video.ready{opacity:1}
+@media (prefers-reduced-motion:reduce){.hero-bg video{display:none}}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(2,31,68,.86) 0%,rgba(2,31,68,.56) 46%,rgba(2,31,68,.20) 100%)}
 .hero-inner{padding-top:104px;padding-bottom:56px;max-width:770px}
 .hero .kicker{text-transform:uppercase;letter-spacing:.36em;font-size:.63rem;font-weight:400;color:rgba(255,255,255,.76);margin-bottom:26px}
@@ -425,7 +431,14 @@ table.tf td.bk{padding-left:8px;white-space:nowrap}
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="home">
-  <div class="hero-bg"><img src="images/cover.jpeg?v=2" alt="Passenger photographing the Garuda Wisnu Kencana statue from a helicopter cabin above the Bukit peninsula" /></div>
+  <div class="hero-bg">
+    <video autoplay muted loop playsinline preload="auto" poster="images/hero-poster.jpg?v=2"
+           aria-label="Aerial footage filmed from a helicopter over Bali">
+      <source src="images/hero.webm?v=2" type="video/webm" />
+      <source src="images/hero.mp4?v=2" type="video/mp4" />
+    </video>
+    <img class="hero-fallback" src="images/hero-poster.jpg?v=2" alt="Helicopter rotor turning against the Bali sky" />
+  </div>
   <div class="container hero-inner">
     <p class="kicker" data-zh="从努沙杜瓦直升机场起飞">Departing Nusa Dua Heliport</p>
     <div class="rule"></div>
@@ -1116,6 +1129,14 @@ table.tf td.bk{padding-left:8px;white-space:nowrap}
   });
   lb.addEventListener('click',function(e){ if(e.target===lb||e.target.id==='lbClose') closeLb(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&lb.classList.contains('open')) closeLb(); });
+
+  var hv=document.querySelector('.hero-bg video');
+  if(hv){
+    var reveal=function(){ hv.classList.add('ready'); };
+    if(hv.readyState>=3){ reveal(); } else { hv.addEventListener('canplay',reveal,{once:true}); }
+    var p=hv.play&&hv.play();
+    if(p&&p.catch){ p.catch(function(){ hv.classList.remove('ready'); }); }
+  }
 
   var els=document.querySelectorAll('.reveal');
   if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('in')});return;}
